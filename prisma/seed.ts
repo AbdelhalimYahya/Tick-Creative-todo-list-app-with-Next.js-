@@ -4,7 +4,21 @@ import { faker } from "@faker-js/faker";
 const prisma = new PrismaClient()
 
 async function main() {
-  // Create users one by one since MongoDB doesn't support createMany with nested creates
+  // one by one since MongoDB doesn't support createMany with nested creates
+  
+  // Create todos
+  for (let i = 0; i < 10; i++) {
+    await prisma.todo.create({
+      data: {
+        title: faker.lorem.sentence(),
+        body: faker.lorem.paragraph(),
+        // completed: faker.datatype.boolean(), // You shouldn't seed the boolean property you must leave it false
+        createdAt: faker.date.past(),
+      }
+    });
+  }
+  
+  // Create users
   for (let i = 0; i < 10; i++) {
     await prisma.user.create({
       data: {
@@ -20,9 +34,6 @@ async function main() {
     });
   }
 }
-
-// "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
-// "tsx prisma/seed.ts"
 
 main()
   .then(async () => {
