@@ -13,12 +13,21 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
+import { getTodoListAction } from "@/actions/todo.actions";
 
-export default function Home() {
+export default async function Home() {
+  const todos = await getTodoListAction();
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-      
+      {/* {todos.map((todo) => (
+        <div key={todo.id}>
+          <p>{todo.title}</p>
+          <p>{todo.body}</p>
+          <p>{todo.completed}</p>
+        </div>
+      ))} */}
+      </main>
       {/* starting the dialog */}
       <Dialog>
           <form>
@@ -58,7 +67,6 @@ export default function Home() {
     {/* Ending of the dialog */}
 
     
-      </main>
     </div>
   );
 }
