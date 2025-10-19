@@ -13,6 +13,8 @@ model Todo {
   body     String?
   completed Boolean @default(false)
   createdAt DateTime @default(now())
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String @db.ObjectId
 }
 
 model Post {
@@ -30,6 +32,7 @@ model User {
   name    String?
   address Address?
   posts   Post[]
+  todos   Todo[]
 }
 
 // Address is an embedded document

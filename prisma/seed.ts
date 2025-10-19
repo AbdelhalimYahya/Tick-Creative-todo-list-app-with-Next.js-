@@ -14,25 +14,26 @@ async function main() {
         body: faker.lorem.paragraph(),
         // completed: faker.datatype.boolean(), // You shouldn't seed the boolean property you must leave it false
         createdAt: faker.date.past(),
+        authorId: "1"
       }
     });
   }
   
   // Create users
-  for (let i = 0; i < 10; i++) {
-    await prisma.user.create({
-      data: {
-        email: faker.internet.email(),
-        name: faker.person.firstName(),
-        address: {
-          street: faker.location.streetAddress(),
-          state: faker.location.state(),
-          city: faker.location.city(),
-          zip: faker.location.zipCode()
-        }
-      }
-    });
-  }
+  // for (let i = 0; i < 10; i++) {
+  //   await prisma.user.create({
+  //     data: {
+  //       email: faker.internet.email(),
+  //       name: faker.person.firstName(),
+  //       address: {
+  //         street: faker.location.streetAddress(),
+  //         state: faker.location.state(),
+  //         city: faker.location.city(),
+  //         zip: faker.location.zipCode()
+  //       }
+  //     }
+  //   });
+  // }
 }
 
 main()
